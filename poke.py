@@ -65,8 +65,34 @@ class Pokemon:
 
 class Trainer:
   def __init__(self, name):
-    pokemon = []
+    self.poke_lst = []
     self.name = name
-    potions = 0
-    cur_act_poke = 0
+    self.potions = 0
+    self.cur_act_poke = 0
 
+  def heal_active_poke(self):
+    #check if pokemon is feinted
+    if self.poke_lst[self.cur_act_poke].is_feinted == True:
+      #update cur_health value to full hp
+      self.poke_lst[self.cur_act_poke].cur_health = self.poke_lst[self.cur_act_poke].max_health
+      #let user know pokemon is no longer feinted
+      self.poke_lst[self.cur_act_poke].revive()
+      return
+    #update cur_health value to full hp
+    self.poke_lst[self.cur_act_poke].cur_health = self.poke_lst[self.cur_act_poke].max_health
+    print(self.poke_lst[self.cur_act_poke].name + " has been healed.")
+
+  def fight(self, trainer_2):
+    print(self.poke_lst[self.cur_act_poke].name + " has been challenged by " + trainer_2.pokemon[trainer_2.cur_act_poke].name)
+    #check if pokemon is feinted
+    if (self.poke_lst[self.cur_act_poke].is_feinted == True) or (trainer_2.poke_lst[trainer_2.cur_act_poke].is_feinted == True):
+      #prompt to switch pokemon
+      if self.poke_lst[self.cur_act_poke].is_feinted == True:
+        self.switch_poke(choice)
+      else:
+        trainer_2.switch_poke(choice)
+    self.poke_lst[self.cur_act_poke].attack(trainer_2.pokemon[trainer_2.cur_act_poke])
+
+  def switch_poke(self, choice):
+    print(self.poke_lst[self.cur_act_poke].name + " has been swapped for " + self.poke_lst[choice-1].name)
+    self.cur_act_poke = choice-1
