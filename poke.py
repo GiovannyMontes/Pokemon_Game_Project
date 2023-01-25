@@ -88,11 +88,21 @@ class Trainer:
     if (self.poke_lst[self.cur_act_poke].is_feinted == True) or (trainer_2.poke_lst[trainer_2.cur_act_poke].is_feinted == True):
       #prompt to switch pokemon
       if self.poke_lst[self.cur_act_poke].is_feinted == True:
-        self.switch_poke(choice)
+        self.switch_poke()
       else:
-        trainer_2.switch_poke(choice)
+        trainer_2.switch_poke()
     self.poke_lst[self.cur_act_poke].attack(trainer_2.pokemon[trainer_2.cur_act_poke])
 
   def switch_poke(self, choice):
+    print("Please choose a new pokemon:")
+    i = 0
+    #print pokemon names that are not feinted
+    while i < len(self.poke_lst):
+      if self.poke_lst[i].is_feinted == False:
+        print(str(i+1) + " --> " + self.poke_lst[i].name)
+      i += 1
+    choice = int(input())
     print(self.poke_lst[self.cur_act_poke].name + " has been swapped for " + self.poke_lst[choice-1].name)
     self.cur_act_poke = choice-1
+
+    
