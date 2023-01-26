@@ -5,7 +5,7 @@ Pokemon Game Project using Python with a focus on classes and OOP
 class Pokemon:
   def __init__(self, name, level, race ):
     self.name = name
-    self.lvl = level
+    self.level = level
     #determine pokemon type
     self.race = race        
     self.max_hp = level*5
@@ -51,7 +51,6 @@ class Pokemon:
         opponent.is_feinted = True
         opponent.cur_health = 0
     else:
-      print(self.name + " has used " + move_name)         # *** Add move_name instance variable *** #
       #print attack message
       opponent.lose_health(opponent.level)
       #update health
@@ -93,7 +92,7 @@ class Trainer:
         trainer_2.switch_poke()
     self.poke_lst[self.cur_act_poke].attack(trainer_2.pokemon[trainer_2.cur_act_poke])
 
-  def switch_poke(self, choice):
+  def switch_poke(self):
     print("Please choose a new pokemon:")
     i = 0
     #print pokemon names that are not feinted
