@@ -105,3 +105,25 @@ class Trainer:
     self.cur_act_poke = choice-1
 
     
+
+###############################
+        # Methods #
+###############################
+
+def choose_pokemon(trainer, poke_1, poke_2, poke_3):
+  print("Hello " + trainer.name + " please choose your starter pokemon by entering the pokemon name: ")
+  print("1. " + poke_1.name + "\n" + "2. " + poke_2.name + "\n" + "3. " + poke_3.name + "\n")
+  starter_choice = input()
+  print("\n\n")
+  if starter_choice == poke_1.name:
+    trainer.poke_lst.append(poke_1)
+    return poke_3
+  elif starter_choice == poke_2.name:
+    trainer.poke_lst.append(poke_2)
+    return poke_1
+  elif starter_choice == poke_3.name:
+    trainer.poke_lst.append(poke_3)
+    return poke_2
+  else:
+    print("Invalid starter choice")
+    choose_pokemon(trainer, poke_1, poke_2, poke_3)
