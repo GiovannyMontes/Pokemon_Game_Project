@@ -25,3 +25,15 @@ julie.poke_lst.append(choose_pokemon(gio, lapras, flareon, bellsprout))
 #print(gio.poke_lst[gio.cur_act_poke].name)
 #print(julie.poke_lst[julie.cur_act_poke].name)
 
+print("You have been challenged by Trainer " + julie.name + ".")
+print(julie.name + " will be using " + julie.poke_lst[julie.cur_act_poke].name)
+
+#prompt user option to switch pokemon
+print("Fight with " + gio.poke_lst[gio.cur_act_poke].name + "?")
+print("'y' or 'n'")
+choice = input()
+choice.lower()
+if choice == "n":
+    gio.switch_poke()
+
+gio.fight(julie)
