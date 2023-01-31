@@ -15,7 +15,7 @@ class Pokemon:
 
 
   def lose_health(self, dmg_received):
-      print(self.name + " lost " + dmg_received + " health")
+      print(self.name + " lost " + str(dmg_received) + " health")
 
   def reg_health(self):
       print(self.name + " now has " + self.curr_health + " health")
@@ -32,34 +32,34 @@ class Pokemon:
       #print attack message
       opponent.lose_health(opponent.level*2)
       #update health
-      opponent.cur_health -= opponent.level*2
+      opponent.cur_hp -= opponent.level*2
       #Check if opponent health is less than 0
-      if opponent.cur_health <= 0:
+      if opponent.cur_hp <= 0:
         print(opponent.name + " has feinted!")
         opponent.is_feinted = True
-        opponent.cur_health = 0
+        opponent.cur_hp = 0
       
     elif (self.race == "water" and opponent.race == "grass") or (self.race == "fire" and opponent.race == "water") or (self.race == "grass" and opponent.race == "fire"):
       print(self.name + " is not effective!")
       #print attack message
       opponent.lose_health(opponent.level/2)
       #update health
-      opponent.cur_health -= opponent.level/2
+      opponent.cur_hp -= opponent.level/2
       #Check if opponent health is less than 0
-      if opponent.cur_health <= 0:
+      if opponent.cur_hp <= 0:
         print(opponent.name + " has feinted!")
         opponent.is_feinted = True
-        opponent.cur_health = 0
+        opponent.cur_hp = 0
     else:
       #print attack message
       opponent.lose_health(opponent.level)
       #update health
-      opponent.cur_health -= opponent.level
+      opponent.cur_hp -= opponent.level
       #Check if opponent health is less than 0
-      if opponent.cur_health <= 0:
+      if opponent.cur_hp <= 0:
         print(opponent.name + " has feinted!")
         opponent.is_feinted = True
-        opponent.cur_health = 0
+        opponent.cur_hp = 0
 
 
 class Trainer:
@@ -72,17 +72,17 @@ class Trainer:
   def heal_active_poke(self):
     #check if pokemon is feinted
     if self.poke_lst[self.cur_act_poke].is_feinted == True:
-      #update cur_health value to full hp
-      self.poke_lst[self.cur_act_poke].cur_health = self.poke_lst[self.cur_act_poke].max_health
+      #update cur_hp value to full hp
+      self.poke_lst[self.cur_act_poke].cur_hp = self.poke_lst[self.cur_act_poke].max_health
       #let user know pokemon is no longer feinted
       self.poke_lst[self.cur_act_poke].revive()
       return
-    #update cur_health value to full hp
-    self.poke_lst[self.cur_act_poke].cur_health = self.poke_lst[self.cur_act_poke].max_health
+    #update cur_hp value to full hp
+    self.poke_lst[self.cur_act_poke].cur_hp = self.poke_lst[self.cur_act_poke].max_health
     print(self.poke_lst[self.cur_act_poke].name + " has been healed.")
 
   def fight(self, trainer_2):
-    print(self.poke_lst[self.cur_act_poke].name + " has been challenged by " + trainer_2.pokemon[trainer_2.cur_act_poke].name)
+    print(self.poke_lst[self.cur_act_poke].name + " has been challenged by " + trainer_2.poke_lst[trainer_2.cur_act_poke].name)
     #check if pokemon is feinted
     if (self.poke_lst[self.cur_act_poke].is_feinted == True) or (trainer_2.poke_lst[trainer_2.cur_act_poke].is_feinted == True):
       #prompt to switch pokemon
@@ -90,7 +90,7 @@ class Trainer:
         self.switch_poke()
       else:
         trainer_2.switch_poke()
-    self.poke_lst[self.cur_act_poke].attack(trainer_2.pokemon[trainer_2.cur_act_poke])
+    self.poke_lst[self.cur_act_poke].attack(trainer_2.poke_lst[trainer_2.cur_act_poke])
 
   def switch_poke(self):
     print("Please choose a new pokemon:")
@@ -111,7 +111,7 @@ class Trainer:
 ###############################
 
 def choose_pokemon(trainer, poke_1, poke_2, poke_3):
-  print("Hello " + trainer.name + " please choose your starter pokemon by entering the pokemon name: ")
+  print("Hello " + trainer.name + " please choose your pokemon by entering the pokemon name: ")
   print("1. " + poke_1.name + "\n" + "2. " + poke_2.name + "\n" + "3. " + poke_3.name + "\n")
   starter_choice = input()
   print("\n\n")
