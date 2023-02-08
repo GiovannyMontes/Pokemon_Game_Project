@@ -18,7 +18,7 @@ class Pokemon:
       print(self.name + " lost " + str(dmg_received) + " health")
 
   def reg_health(self):
-      print(self.name + " now has " + self.curr_health + " health")
+      print(self.name + " now has " + self.cur_hp + " health")
 
   def knockout(self):
       print(self.name + " has feinted")
@@ -73,12 +73,12 @@ class Trainer:
     #check if pokemon is feinted
     if self.poke_lst[self.cur_act_poke].is_feinted == True:
       #update cur_hp value to full hp
-      self.poke_lst[self.cur_act_poke].cur_hp = self.poke_lst[self.cur_act_poke].max_health
+      self.poke_lst[self.cur_act_poke].cur_hp = self.poke_lst[self.cur_act_poke].max_hp
       #let user know pokemon is no longer feinted
       self.poke_lst[self.cur_act_poke].revive()
       return
     #update cur_hp value to full hp
-    self.poke_lst[self.cur_act_poke].cur_hp = self.poke_lst[self.cur_act_poke].max_health
+    self.poke_lst[self.cur_act_poke].cur_hp = self.poke_lst[self.cur_act_poke].max_hp
     print(self.poke_lst[self.cur_act_poke].name + " has been healed.")
 
   def fight(self, trainer_2):

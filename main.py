@@ -37,3 +37,15 @@ if choice == "n":
     gio.switch_poke()
 
 gio.fight(julie)
+julie.fight(gio)
+
+
+################## Test "heal_active_poke" Trainer class method ####################
+
+#print active poke health before heal
+print("\nThis is health before healing: ",julie.poke_lst[julie.cur_act_poke].cur_hp)
+julie.heal_active_poke()
+#print active poke health after heal
+print("\nThis is health after heal: ",julie.poke_lst[julie.cur_act_poke].cur_hp)
+
+
