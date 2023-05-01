@@ -1,1 +1,1 @@
-# Pokemon_Game_Project
+# Mini Pokemon Game Project
